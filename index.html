@@ -1,53 +1,195 @@
 ```html
-if (datos.logoUrl) {
-    document.getElementById('logoContainer').innerHTML =
-        `<img src="${datos.logoUrl}" alt="Logo FFCUPS">`;
-}
-} else {
-    document.getElementById('fecha').textContent = datosDefault.fecha;
-    document.getElementById('hora').textContent = datosDefault.hora;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FFCUPS - Torneos Free Fire</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#111827;
+    color:white;
 }
 
-// Mostrar/Ocultar panel admin
-function toggleAdmin() {
-    const panel = document.getElementById('adminPanel');
-    panel.style.display =
-        panel.style.display === 'none' ? 'block' : 'none';
+header{
+    text-align:center;
+    padding:40px 20px;
+    background:#ff6b35;
 }
 
-// Restablecer datos
-function resetDatos() {
-    localStorage.removeItem('ffcups_datos');
-    location.reload();
+h1{
+    margin:0;
+    font-size:3rem;
 }
 
-// Formulario de reserva
-document.getElementById('formReserva').addEventListener('submit', function(e) {
+.subtitulo{
+    font-size:1.2rem;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:#1f2937;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+.info{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+.info div{
+    background:#374151;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:8px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    background:#ff6b35;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#000;
+}
+
+a{
+    color:#ff6b35;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>FFCUPS</h1>
+    <p class="subtitulo">🏆 Torneos Online de Free Fire</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Información del Torneo</h2>
+
+        <div class="info">
+            <div>
+                <h3>Juego</h3>
+                <p>Free Fire</p>
+            </div>
+
+            <div>
+                <h3>Modalidad</h3>
+                <p>Duos Online</p>
+            </div>
+
+            <div>
+                <h3>Inscripción</h3>
+                <p>$6.000 COP</p>
+            </div>
+
+            <div>
+                <h3>Cupos</h3>
+                <p>20 Equipos</p>
+            </div>
+
+            <div>
+                <h3>Premio</h3>
+                <p>$4.000 por eliminación</p>
+            </div>
+
+            <div>
+                <h3>Pago</h3>
+                <p>Nequi y PayPal</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Reserva tu Cupo</h2>
+
+        <form id="registro">
+
+            <label>Nombre del Equipo</label>
+            <input type="text" required>
+
+            <label>Jugador 1</label>
+            <input type="text" required>
+
+            <label>Jugador 2</label>
+            <input type="text" required>
+
+            <label>ID Free Fire Jugador 1</label>
+            <input type="text" required>
+
+            <label>ID Free Fire Jugador 2</label>
+            <input type="text" required>
+
+            <label>WhatsApp</label>
+            <input type="tel" required>
+
+            <label>Método de Pago</label>
+            <select>
+                <option>Nequi</option>
+                <option>PayPal</option>
+            </select>
+
+            <button type="submit">Reservar Cupo</button>
+        </form>
+
+        <p id="mensaje"></p>
+    </div>
+
+</div>
+
+<footer>
+    <p>TikTok: @ffcups_</p>
+    <p>FFCUPS © 2025</p>
+</footer>
+
+<script>
+document.getElementById("registro").addEventListener("submit", function(e){
     e.preventDefault();
 
-    document.getElementById('mensajeExito').classList.add('show');
-
-    // Aquí puedes guardar reservas en el futuro
-    const reserva = {
-        equipo: document.getElementById('nombreEquipo').value,
-        jugador1: document.getElementById('jugador1').value,
-        jugador2: document.getElementById('jugador2').value,
-        id1: document.getElementById('id1').value,
-        id2: document.getElementById('id2').value,
-        whatsapp: document.getElementById('whatsapp').value,
-        metodoPago: document.getElementById('metodoPago').value
-    };
-
-    console.log('Reserva registrada:', reserva);
+    document.getElementById("mensaje").innerHTML =
+    "✅ Reserva enviada correctamente.";
 
     this.reset();
-
-    setTimeout(() => {
-        document.getElementById('mensajeExito').classList.remove('show');
-    }, 5000);
 });
 </script>
+
 </body>
 </html>
 ```
